@@ -5,9 +5,13 @@ b = 3
 c = my.my_sum(a, b)
 print(c)
 
-# ran3
-d = my.ran3(-1)
-print(d)
+seed = 1
+print(my.gasdev(seed))
+print(my.gasdev(seed))
 
-for i in range(1, 11):
-    print(my.ran3(1))
+# for i in range(1, 11):
+#     ranvar = my.ran3(1)
+#     print(ranvar)
+#     stdranvar = my.gasdev(ranvar)
+#     print(stdranvar)
+

@@ -1,3 +1,6 @@
+import math as math
+
+
 def my_sum(a, b):
     result = a + b
     return result
@@ -8,6 +11,9 @@ ma = [0 for i in range(56)]
 inext = 0
 inextp = 0
 iff = 0
+
+iset = 0
+gset = 0
 
 
 def ran3(idum):
@@ -70,8 +76,30 @@ def ran3(idum):
 
 
 def gasdev(idum):
+    global iset
+    global gset
+
+    rsq = 0
+
     if idum < 0:
         iset = 0
+
+    if iset == 0:
+        while rsq >= 1 or rsq == 0:
+            v1 = 2 * ran3(idum) - 1
+            v2 = 2 * ran3(idum) - 1
+            rsq = v1 * v1 + v2 * v2
+
+        fac = math.sqrt(-2*math.log(rsq)/rsq)
+        gset = v1*fac
+        iset = 1
+        result = v2*fac
+    else:
+        iset = 0
+        result = gset
+
+    return result
+
 
 
 
