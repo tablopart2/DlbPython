@@ -1,4 +1,5 @@
 import math as math
+import numpy as np
 
 
 def my_sum(a, b):
@@ -99,6 +100,49 @@ def gasdev(idum):
         result = gset
 
     return result
+
+
+def determinant(correlmat, n):
+    if n == 1:
+        det = correlmat[0,0]
+    elif n == 2:
+        det = correlmat[0, 0]*correlmat[1, 1] - correlmat[0, 1]*correlmat[1, 0]
+    else:
+        det = 0
+
+        for j1 in range(0, n):
+            m = np.zeros((n-1, n-1))
+
+            for i in range(1, n):
+                j2 = 0
+
+                for j in range(0, n):
+
+                    if j == j1:
+                        dettogo = 1
+
+                    if dettogo != 1:
+                        m[i-1, j2] = correlmat[i, j]
+                        j2 = j2 + 1
+
+                    dettogo = 0
+
+            dummy = determinant(m, n - 1)
+            det = det + (-1.0) ** (1.0+j1+1.0)*correlmat[0, j1]*dummy
+
+    result = det
+    return result
+
+
+# def choleskydecompose(cholesky,naaray):
+#
+#     it_max = 100
+#
+#     chk_nonPD = 0
+#
+#     for i in range(0, naaray):
+
+
 
 
 
