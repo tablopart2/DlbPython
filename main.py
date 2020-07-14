@@ -1,11 +1,15 @@
 import myfunc as my
 import numpy as np
+import decimal as de
 
 # test
 a = 2
 b = 3
 c = my.my_sum(a, b)
 print(c)
+
+# test1
+de.Decimal('0.1')*3 == de.Decimal('0.3')
 
 seed = 1
 

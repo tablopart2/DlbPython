@@ -9,7 +9,7 @@
 # pip install --no-index --find-links="C:/Users/admin/PycharmProjects/PythonPackages/" tokenize_rt
 # pip install --no-index --find-links="C:/Users/admin/PycharmProjects/PythonPackages/" setuptools --upgrade
 # pip install --no-index --find-links="C:/Users/admin/PycharmProjects/PythonPackages/" goto-statement
-
+# pip install --no-index --find-links="C:/Users/admin/PycharmProjects/PythonPackages/" fdecimal
 
 
 

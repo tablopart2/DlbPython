@@ -1,5 +1,6 @@
 import math as math
 import numpy as np
+import decimal as de
 
 
 def my_sum(a, b):
@@ -225,6 +226,7 @@ def jacobi_eigenvalue(n, a, it_max, v, d):
             for p in range(0, n):
                 for q in range(p + 1, n):
                     gapq = 10.0 * abs(a[p + q * n])
+
                     termp = gapq + abs(d[p])
                     termq = gapq + abs(d[q])
 
@@ -257,25 +259,26 @@ def jacobi_eigenvalue(n, a, it_max, v, d):
                         for j in range(0, p):
                             g = a[j + p * n]
                             h = a[j + q * n]
-                            a[j + p * n] = g - s * (h + g * tau)
+
+                            a[j + p * n] = de.Decimal(g) - de.Decimal(s) * (de.Decimal(h) + de.Decimal(g) * de.Decimal(tau))
                             a[j + q * n] = h + s * (g - h * tau)
 
                         for j in range(p + 1, q):
                             g = a[p + j * n]
                             h = a[j + q * n]
-                            a[p + j * n] = g - s * (h * g * tau)
+                            a[p + j * n] = de.Decimal(g) - de.Decimal(s) * (de.Decimal(h) + de.Decimal(g) * de.Decimal(tau))
                             a[j + q * n] = h + s * (g - h * tau)
 
                         for j in range(q + 1, n):
                             g = a[p + j * n]
                             h = a[q + j * n]
-                            a[p + j * n] = g - s * (h + g * tau)
+                            a[p + j * n] = de.Decimal(g) - de.Decimal(s) * (de.Decimal(h) + de.Decimal(g) * de.Decimal(tau))
                             a[q + j * n] = h + s * (g - h * tau)
 
                         for j in range(0, n):
                             g = v[j + p * n]
                             h = v[j + q * n]
-                            v[j + p * n] = g - s * (h + g * tau)
+                            v[j + p * n] = de.Decimal(g) - de.Decimal(s) * (de.Decimal(h) + de.Decimal(g) * de.Decimal(tau))
                             v[j + q * n] = h + s * (g - h * tau)
 
                         rot_num = rot_num + 1
@@ -285,26 +288,26 @@ def jacobi_eigenvalue(n, a, it_max, v, d):
                 d[i] = bw[i]
                 zw[i] = 0.0
 
-    if eiggoto == 1 or eiggoto == 0:
-        for j in range(0, n):
-            for i in range(0, j):
-                a[i + j * n] = a[j + i * n]
+    for j in range(0, n):
+        for i in range(0, j):
+            a[i + j * n] = a[j + i * n]
 
-        for k in range(0, n - 1):
-            m = k
-            for ll in range(k + 1, n):
-                if d[ll] < d[m]:
-                    m = ll
+    for k in range(0, n - 1):
+        m = k
+        for ll in range(k + 1, n):
+            if d[ll] < d[m]:
+                m = ll
 
-            if m != k:
-                t = d[m]
-                d[m] = d[k]
-                d[k] = t
+        if m != k:
+            t = d[m]
+            d[m] = d[k]
+            d[k] = t
 
-                for i in range(0, n):
-                    w = v[i+m*n]
-                    v[i+m*n] = v[i+k*n]
-                    v[i+k*n] = w
+            for i in range(0, n):
+                w = v[i+m*n]
+                v[i+m*n] = v[i+k*n]
+                v[i+k*n] = w
+
     result = 1
     return result
 
